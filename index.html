@@ -203,6 +203,7 @@ const DATA = {
   "name2": "Enes",
   "startDate": "2025-09-24T11:41:00",
   "heroSubtitle": "Gittiğimiz yerler, dinlediğimiz şarkılar ve biriktirdiğimiz anlar — hepsi burada, sana ayrı bir hediye olsun diye.",
+  "spotifyPlaylistId": "0iJkaYDj4CWrXgEPqPu0Fi",
   "places": [
     {
       "place": "Altın Boynuz",
@@ -744,13 +745,23 @@ DATA.songs.forEach((s, i) => {
   list.appendChild(li);
 });
 
-// Spotify
+// Spotify Paneli & IFrame
 const playerToggle = document.getElementById('playerToggle');
 const playerPanel = document.getElementById('playerPanel');
+
+playerToggle.addEventListener('click', () => {
+  playerPanel.classList.toggle('open');
+});
+
 window.onSpotifyIframeApiReady = (IFrameAPI) => {
-  IFrameAPI.createController(document.getElementById('embed-iframe'), { uri: 'spotify:playlist:' + DATA.spotifyPlaylistId, width: '100%', height: '352' }, () => {});
+  const element = document.getElementById('embed-iframe');
+  const options = {
+    uri: 'spotify:playlist:' + DATA.spotifyPlaylistId,
+    width: '100%',
+    height: '352'
+  };
+  IFrameAPI.createController(element, options, (EmbedController) => {});
 };
-playerToggle.addEventListener('click', () => playerPanel.classList.toggle('open'));
 </script>
 </body>
 </html>
