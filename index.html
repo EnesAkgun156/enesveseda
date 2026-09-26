@@ -160,7 +160,7 @@ footer .sign{ margin-top: 18px; font-size: .8rem; letter-spacing:.05em; color: v
 
 <section id="music">
   <div class="container">
-    <div class="section-head"><div class="tag">bize ait olan şarkılar</div><h2>Çaldığımız Şarkılar</h2></div>
+    <div class="section-head"><div class="tag">sana olan şarkılarım</div><h2>Sana Şarkılarım</h2></div>
     <div class="music-wrap">
       <div>
         <div class="vinyl" id="vinyl"></div>
@@ -203,7 +203,6 @@ const DATA = {
   "name2": "Enes",
   "startDate": "2025-09-24T11:41:00",
   "heroSubtitle": "Gittiğimiz yerler, dinlediğimiz şarkılar ve biriktirdiğimiz anlar — hepsi burada, sana ayrı bir hediye olsun diye.",
-  "spotifyPlaylistId": "0iJkaYDj4CWrXgEPqPu0Fi",
   "places": [
     {
       "place": "Altın Boynuz",
@@ -316,7 +315,7 @@ const DATA = {
         },
         {
           "caption": "Güzel gözlüm...",
-          "path": "resimler/IMG-20260426-WA0092.jpg"
+          "path": "resimler/IMG-20260426-WA0086.jpg"
         },
         {
           "caption": "Aslanım pozu...",
@@ -522,6 +521,24 @@ const DATA = {
       "artist": "Enes",
       "note": "Sana ilk teklifimde",
       "path": "muzikler/140 nabız.mp3"
+    },
+    {
+      "title": "Adını Koyamadan",
+      "artist": "Enes",
+      "note": "Hislerim",
+      "path": "muzikler/Adını Koyamadan.mp3"
+    },
+    {
+      "title": "12 Ay",
+      "artist": "Enes",
+      "note": "1 Senem",
+      "path": "muzikler/12 Ay.mp3"
+    },
+    {
+      "title": "Bekledim",
+      "artist": "Enes",
+      "note": "Sonsuza kadar",
+      "path": "muzikler/Bekledim.mp3"
     }
   ],
   "photos": [
@@ -745,23 +762,13 @@ DATA.songs.forEach((s, i) => {
   list.appendChild(li);
 });
 
-// Spotify Paneli & IFrame
+// Spotify
 const playerToggle = document.getElementById('playerToggle');
 const playerPanel = document.getElementById('playerPanel');
-
-playerToggle.addEventListener('click', () => {
-  playerPanel.classList.toggle('open');
-});
-
 window.onSpotifyIframeApiReady = (IFrameAPI) => {
-  const element = document.getElementById('embed-iframe');
-  const options = {
-    uri: 'spotify:playlist:' + DATA.spotifyPlaylistId,
-    width: '100%',
-    height: '352'
-  };
-  IFrameAPI.createController(element, options, (EmbedController) => {});
+  IFrameAPI.createController(document.getElementById('embed-iframe'), { uri: 'spotify:playlist:' + DATA.spotifyPlaylistId, width: '100%', height: '352' }, () => {});
 };
+playerToggle.addEventListener('click', () => playerPanel.classList.toggle('open'));
 </script>
 </body>
 </html>
